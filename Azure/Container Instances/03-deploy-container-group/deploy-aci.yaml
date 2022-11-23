@@ -1,0 +1,36 @@
+apiVersion: 2019-12-01
+location: westeurope
+name: myMicroService
+properties:
+  containers:
+  - name: webapp
+    properties:
+      image: mycrazycontainerdemo.azurecr.io/myrepo/webapp:v1
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 80
+  - name: api
+    properties:
+      image: mycrazycontainerdemo.azurecr.io/myrepo/api:v1
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 5001
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: tcp
+      port: 80
+    dnsNameLabel: myMicroService
+  imageRegistryCredentials:
+  - server: mycrazycontainerdemo.azurecr.io
+    username: mycrazycontainerdemo
+    password: gmgbI486+71EjQtubrOnRYMzOz2SNP6N
+tags: {exampleTag: tutorial}
+type: Microsoft.ContainerInstance/containerGroups
